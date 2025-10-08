@@ -1,6 +1,13 @@
 import React from 'react'
 
-const Search = ({searchTerm, setSearchTerm}) => {
+const Search = ({searchTerm, setSearchTerm, onSearch}) => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onSearch(searchTerm);
+    }
+  }
+
   return (
     <div className="search">
       <div>
@@ -10,6 +17,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
           placeholder="Search for a movie..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </div>
     </div>
